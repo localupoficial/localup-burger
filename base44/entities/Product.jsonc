@@ -1,0 +1,49 @@
+{
+  "name": "Product",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "price": {
+      "type": "number"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Hamb\u00fargueres",
+        "Combos",
+        "Acompanhamentos",
+        "Bebidas",
+        "Sobremesas"
+      ]
+    },
+    "ingredients": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "image_key": {
+      "type": "string"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "badge": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "name",
+    "price",
+    "category"
+  ]
+}

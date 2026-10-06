@@ -1,0 +1,28 @@
+{
+  "name": "Banner",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "image_key": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "title"
+  ]
+}

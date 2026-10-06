@@ -1,0 +1,14 @@
+import React, { useState } from 'react';
+import { Upload, Save } from 'lucide-react';
+import { base44 } from '@/api/base44Client';
+import { Image } from '@/components/ui/image';
+import { assets, categories } from '@/components/burger/catalog';
+import Overlay from '@/components/burger/Overlay';
+export default function BannerForm({ banner, onClose, onSaved }) {
+  const [form, setForm] = useState(banner || { title: '', subtitle: '', image_url: '', category: 'Todos', active: true }), [busy, setBusy] = useState(false), [uploading, setUploading] = useState(false), [error, setError] = useState('');
+  const change = (key, value) => setForm(f => ({ ...f, [key]: value }));
+  const upload = async e => { const file = e.target.files[0]; if (!file) return; setUploading(true); setError(''); try { const { file_url } = await base44.integrations.Core.UploadPublicFile({ file }); change('image_url', file_url); } catch { setError('Não foi possível enviar o banner.'); } finally { setUploading(false); } };
+  const submit = async e => { e.preventDefault(); setBusy(true); setError(''); try { const data = { title: form.title, subtitle: form.subtitle, image_url: form.image_url || '', image_key: form.image_key || '', category: form.category, active: form.active }; if (banner) await base44.entities.Banner.update(banner.id, data); else await base44.entities.Banner.create(data); onSaved(); onClose(); } catch { setError('Não foi possível salvar o banner.'); } finally { setBusy(false); } };
+  const image = form.image_url || assets[form.image_key];
+  return <Overlay title={banner ? 'EDITAR BANNER' : 'NOVO BANNER'} onClose={onClose}><form className="form-body" onSubmit={submit}><label className="upload-box">{image && <Image src={image} alt="Prévia do banner" className="admin-preview" />}<Upload size={20} /><span>{uploading ? 'Enviando…' : 'Escolher imagem (opcional)'}</span><input type="file" accept="image/jpeg,image/png,image/webp" onChange={upload} disabled={uploading} /></label><small className="muted">Banner público na home. Formato horizontal recomendado.</small><label className="field">Título<input required value={form.title} onChange={e => change('title', e.target.value)} /></label><label className="field">Texto de apoio<textarea value={form.subtitle} onChange={e => change('subtitle', e.target.value)} /></label><label className="field">Categoria do botão<select value={form.category} onChange={e => change('category', e.target.value)}>{categories.map(c => <option key={c}>{c}</option>)}</select></label><label className="check-row"><input type="checkbox" checked={form.active} onChange={e => change('active', e.target.checked)} /> Exibir na home</label>{error && <p className="error-text" role="alert">{error}</p>}<button className="primary-btn" disabled={busy || uploading}><Save size={17} />{busy ? 'SALVANDO…' : 'SALVAR BANNER'}</button></form></Overlay>;
+}

@@ -1,0 +1,24 @@
+{
+  "name": "SupportMessage",
+  "type": "object",
+  "properties": {
+    "session": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "sender": {
+      "type": "string",
+      "enum": [
+        "customer",
+        "staff"
+      ]
+    }
+  },
+  "required": [
+    "session",
+    "text",
+    "sender"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "name": "Order",
+  "type": "object",
+  "properties": {
+    "customer_name": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "delivery": {
+      "type": "string"
+    },
+    "payment": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "price": {
+            "type": "number"
+          },
+          "customization": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "subtotal": {
+      "type": "number"
+    },
+    "shipping": {
+      "type": "number"
+    },
+    "total": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Aguardando Confirma\u00e7\u00e3o",
+        "Em Preparo",
+        "Saiu para Entrega",
+        "Entregue"
+      ],
+      "default": "Aguardando Confirma\u00e7\u00e3o"
+    }
+  },
+  "required": [
+    "customer_name",
+    "phone",
+    "items",
+    "total"
+  ]
+}
