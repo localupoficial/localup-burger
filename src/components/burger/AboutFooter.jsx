@@ -1,9 +1,101 @@
 import React from 'react';
 import { ArrowUpRight, Flame, MessageCircle, Beef, Leaf } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
 export default function AboutFooter({ onChat }) {
-  return <><section id="sobre" className="about-section"><div className="container about-grid"><div><div className="eyebrow">MENOS COMPLICAÇÃO. MAIS SABOR.</div><h2>A GENTE LEVA<br />BURGER <span>A SÉRIO.</span></h2><p>O segredo não é um segredo: ingredientes de verdade, um blend caprichado e respeito por cada etapa. Do pão macio à crosta da carne, nada está aqui por acaso.</p><p>Na LOCALUP, cada pedido nasce na chapa. Porque comida boa não precisa de atalhos. Precisa de cuidado.</p><a href="#cardapio" className="text-link">PROVE A DIFERENÇA <ArrowUpRight size={18} /></a></div><div className="manifesto"><span className="manifesto-number">100<span>%</span></span><h3>ARTESANAL.<br />SEM MEIO-TERMO.</h3><div><Beef size={19} /><span>Blend selecionado</span></div><div><Leaf size={19} /><span>Frescor em cada camada</span></div><div><Flame size={19} /><span>Da chapa para o seu pedido</span></div><small>O NOSSO JEITO DE FAZER. O SEU JEITO DE CURTIR.</small></div></div></section>
-    <section id="contato" className="container contact-section"><div><div className="eyebrow">ESTAMOS POR AQUI</div><h2>BATEU UMA DÚVIDA?<br /><span>FALA COM A GENTE.</span></h2><p>Ingredientes, personalização ou seu pedido.<br />Envie sua mensagem para nossa equipe.</p></div><button className="outline-btn" onClick={onChat}><MessageCircle size={20} /> ABRIR ATENDIMENTO <ArrowUpRight size={18} /></button></section>
-    <footer><div className="container footer-top"><a href="#home" className="wordmark">LOCAL<span>UP</span><small>BURGER • FEITO DE VERDADE</small></a><nav><a href="#cardapio">Cardápio</a><a href="#sobre">Sobre nós</a><a href="#contato">Contato</a><Link to="/admin">Painel de gestão</Link></nav><a href="#home" className="back-top">VOLTAR AO TOPO <ArrowUpRight size={16} /></a></div><div className="footer-watermark">LOCALUP</div><div className="container footer-bottom"><span>© {new Date().getFullYear()} LOCALUP Burger.</span><span>INGREDIENTES REAIS. SABOR SEM LIMITES.</span></div></footer>
-  </>;
+  return (
+    <>
+      <section id="sobre" className="about-section" aria-label="Sobre a LOCALUP">
+        <div className="container about-grid">
+          <div>
+            <div className="eyebrow">MENOS COMPLICAÇÃO. MAIS SABOR.</div>
+            <h2>
+              A GENTE LEVA
+              <br />
+              BURGER <span>A SÉRIO.</span>
+            </h2>
+            <p>
+              O segredo não é um segredo: ingredientes de verdade, um blend caprichado e respeito
+              por cada etapa. Do pão macio à crosta da carne, nada está aqui por acaso.
+            </p>
+            <p>
+              Na LOCALUP, cada pedido nasce na chapa. Porque comida boa não precisa de atalhos.
+              Precisa de cuidado.
+            </p>
+            <a href="#cardapio" className="text-link">
+              PROVE A DIFERENÇA <ArrowUpRight size={18} />
+            </a>
+          </div>
+
+          <div className="manifesto">
+            <span className="manifesto-number">
+              100<span>%</span>
+            </span>
+            <h3>
+              ARTESANAL.
+              <br />
+              SEM MEIO-TERMO.
+            </h3>
+            <div>
+              <Beef size={19} />
+              <span>Blend selecionado</span>
+            </div>
+            <div>
+              <Leaf size={19} />
+              <span>Frescor em cada camada</span>
+            </div>
+            <div>
+              <Flame size={19} />
+              <span>Da chapa para o seu pedido</span>
+            </div>
+            <small>O NOSSO JEITO DE FAZER. O SEU JEITO DE CURTIR.</small>
+          </div>
+        </div>
+      </section>
+
+      <section id="contato" className="container contact-section" aria-label="Contato">
+        <div>
+          <div className="eyebrow">ESTAMOS POR AQUI</div>
+          <h2>
+            BATEU UMA DÚVIDA?
+            <br />
+            <span>FALA COM A GENTE.</span>
+          </h2>
+          <p>
+            Ingredientes, personalização ou seu pedido.
+            <br />
+            Envie sua mensagem para nossa equipe.
+          </p>
+        </div>
+        <button type="button" className="outline-btn" onClick={onChat}>
+          <MessageCircle size={20} /> ABRIR ATENDIMENTO <ArrowUpRight size={18} />
+        </button>
+      </section>
+
+      <footer>
+        <div className="container footer-top">
+          <a href="#home" className="wordmark">
+            LOCAL<span>UP</span>
+            <small>BURGER • FEITO DE VERDADE</small>
+          </a>
+          <nav aria-label="Rodapé">
+            <a href="#cardapio">Cardápio</a>
+            <a href="#sobre">Sobre nós</a>
+            <a href="#contato">Contato</a>
+            <Link to="/admin">Painel de gestão</Link>
+          </nav>
+          <a href="#home" className="back-top">
+            VOLTAR AO TOPO <ArrowUpRight size={16} />
+          </a>
+        </div>
+        <div className="footer-watermark" aria-hidden="true">
+          LOCALUP
+        </div>
+        <div className="container footer-bottom">
+          <span>© {new Date().getFullYear()} LOCALUP Burger.</span>
+          <span>INGREDIENTES REAIS. SABOR SEM LIMITES.</span>
+        </div>
+      </footer>
+    </>
+  );
 }
