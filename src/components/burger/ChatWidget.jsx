@@ -64,7 +64,7 @@ export default function ChatWidget({ open, setOpen }) {
           <div className="chat-heading">
             <div>
               <MessageCircle size={20} />
-              <b>LOCALUP ATENDIMENTO</b>
+              <b>BEST BURGUER 013</b>
             </div>
             <button type="button" onClick={() => setOpen(false)} aria-label="Fechar atendimento">
               <X size={16} />

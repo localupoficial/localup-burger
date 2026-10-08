@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function AboutFooter({ onChat }) {
   return (
     <>
-      <section id="sobre" className="about-section" aria-label="Sobre a LOCALUP">
+      <section id="sobre" className="about-section" aria-label="Sobre a Best Burguer 013">
         <div className="container about-grid">
           <div>
             <div className="eyebrow">MENOS COMPLICAÇÃO. MAIS SABOR.</div>
@@ -19,7 +19,7 @@ export default function AboutFooter({ onChat }) {
               por cada etapa. Do pão macio à crosta da carne, nada está aqui por acaso.
             </p>
             <p>
-              Na LOCALUP, cada pedido nasce na chapa. Porque comida boa não precisa de atalhos.
+              Na Best Burguer 013, cada pedido nasce na chapa. Porque comida boa não precisa de atalhos.
               Precisa de cuidado.
             </p>
             <a href="#cardapio" className="text-link">
@@ -75,8 +75,8 @@ export default function AboutFooter({ onChat }) {
       <footer>
         <div className="container footer-top">
           <a href="#home" className="wordmark">
-            LOCAL<span>UP</span>
-            <small>BURGER • FEITO DE VERDADE</small>
+            best <span>Burguer</span>
+            <small>013</small>
           </a>
           <nav aria-label="Rodapé">
             <a href="#cardapio">Cardápio</a>
@@ -89,10 +89,10 @@ export default function AboutFooter({ onChat }) {
           </a>
         </div>
         <div className="footer-watermark" aria-hidden="true">
-          LOCALUP
+          BEST 013
         </div>
         <div className="container footer-bottom">
-          <span>© {new Date().getFullYear()} LOCALUP Burger.</span>
+          <span>© {new Date().getFullYear()} Best Burguer 013.</span>
           <span>INGREDIENTES REAIS. SABOR SEM LIMITES.</span>
         </div>
       </footer>

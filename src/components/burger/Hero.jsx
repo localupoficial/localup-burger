@@ -6,7 +6,7 @@ import { assets } from '@/components/burger/catalog';
 export default function Hero() {
   return (
     <>
-      <section id="home" className="hero" aria-label="Apresentação LOCALUP Burger">
+      <section id="home" className="hero" aria-label="Apresentação Best Burguer 013">
         <Image
           src={assets.hero}
           alt="Hambúrguer artesanal com brioche, bacon crocante e cheddar em composição gastronômica"
@@ -49,7 +49,7 @@ export default function Hero() {
           <a href="#promocoes" aria-label="Explorar promoções">
             <ArrowDown size={18} />
           </a>
-          <span className="hero-edition">LOCALUP SIGNATURE / 01</span>
+          <span className="hero-edition">BEST BURGUER 013 / 01</span>
         </div>
       </section>
 

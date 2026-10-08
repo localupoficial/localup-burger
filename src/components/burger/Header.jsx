@@ -29,9 +29,9 @@ export default function Header({ count, onCart, onProfile }) {
   return (
     <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
       <div className="header-inner">
-        <a className="wordmark" href="/" aria-label="LOCALUP Burger início">
-          LOCAL<span>UP</span>
-          <small>BURGER • FEITO DE VERDADE</small>
+        <a className="wordmark" href="/" aria-label="Best Burguer 013 início">
+          best <span>Burguer</span>
+          <small>013</small>
         </a>
 
         <nav className={open ? 'nav-links open' : 'nav-links'} aria-label="Menu principal">
