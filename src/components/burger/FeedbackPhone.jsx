@@ -1,27 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ChevronLeft, ChevronRight, Volume2, VolumeX } from 'lucide-react';
 
 const HIGHLIGHT =
   'https://www.instagram.com/stories/highlights/18111333787415325/';
-const STORIES = 5;
 
-/**
- * Mockup de celular no formato dos destaques do Instagram (Feedback).
- * Os vídeos reais ficam no highlight oficial — o Instagram não permite incorporá-los.
- */
+const VIDEOS = [
+  '/feedbacks/feedback-1.mp4',
+  '/feedbacks/feedback-2.mp4',
+  '/feedbacks/feedback-3.mp4',
+];
+
 export default function FeedbackPhone() {
+  const videoRef = useRef(null);
   const [index, setIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [muted, setMuted] = useState(true);
 
   useEffect(() => {
-    const timer = setInterval(() => setIndex((i) => (i + 1) % STORIES), 4200);
-    return () => clearInterval(timer);
-  }, []);
+    const video = videoRef.current;
+    if (!video) return;
+    setProgress(0);
+    video.currentTime = 0;
+    const play = video.play();
+    if (play) play.catch(() => {});
+  }, [index]);
 
-  const prev = () => setIndex((i) => (i - 1 + STORIES) % STORIES);
-  const next = () => setIndex((i) => (i + 1) % STORIES);
+  const prev = () => setIndex((i) => (i - 1 + VIDEOS.length) % VIDEOS.length);
+  const next = () => setIndex((i) => (i + 1) % VIDEOS.length);
+
+  const onTime = () => {
+    const video = videoRef.current;
+    if (!video?.duration) return;
+    setProgress(video.currentTime / video.duration);
+  };
 
   return (
-    <section className="container feedback-section" aria-labelledby="feedback-title">
+    <section className="container feedback-section" id="feedbacks" aria-labelledby="feedback-title">
       <div className="feedback-copy">
         <div className="eyebrow">
           <span /> QUEM PROVA, VOLTA
@@ -37,13 +51,28 @@ export default function FeedbackPhone() {
         </a>
       </div>
 
-      <div className="phone-mock" aria-label="Mockup de celular com feedbacks em vídeo">
+      <div className="phone-mock" aria-label="Celular com feedbacks em vídeo">
         <div className="phone-mock__bezel">
           <div className="phone-mock__notch" aria-hidden="true" />
           <div className="phone-mock__screen">
+            <video
+              ref={videoRef}
+              className="story-video"
+              src={VIDEOS[index]}
+              muted={muted}
+              playsInline
+              autoPlay
+              onTimeUpdate={onTime}
+              onEnded={next}
+            />
+
             <div className="story-bars" aria-hidden="true">
-              {Array.from({ length: STORIES }).map((_, i) => (
-                <span key={i} className={i === index ? 'is-active' : i < index ? 'is-done' : ''} />
+              {VIDEOS.map((src, i) => (
+                <span
+                  key={src}
+                  className={i === index ? 'is-active' : i < index ? 'is-done' : ''}
+                  style={i === index ? { '--story-progress': `${progress * 100}%` } : undefined}
+                />
               ))}
             </div>
 
@@ -55,18 +84,15 @@ export default function FeedbackPhone() {
                 <strong>best_burguer013</strong>
                 <small>Feedback</small>
               </div>
+              <button
+                type="button"
+                className="story-sound"
+                onClick={() => setMuted((value) => !value)}
+                aria-label={muted ? 'Ativar som' : 'Silenciar'}
+              >
+                {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+              </button>
             </div>
-
-            <a
-              className="story-play"
-              href={HIGHLIGHT}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Assistir feedback ${index + 1} de ${STORIES} no Instagram`}
-            >
-              <Play size={28} fill="currentColor" />
-              <span>Assistir vídeo {index + 1}</span>
-            </a>
 
             <div className="story-nav">
               <button type="button" onClick={prev} aria-label="Feedback anterior">
