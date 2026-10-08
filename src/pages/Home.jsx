@@ -7,6 +7,7 @@ import Promotions from '@/components/burger/Promotions';
 import MenuSection from '@/components/burger/MenuSection';
 import Customize from '@/components/burger/Customize';
 import CartDrawer from '@/components/burger/CartDrawer';
+import FeedbackPhone from '@/components/burger/FeedbackPhone';
 import AboutFooter from '@/components/burger/AboutFooter';
 import ChatWidget from '@/components/burger/ChatWidget';
 import Profile from '@/components/burger/Profile';
@@ -66,6 +67,7 @@ export default function Home() {
           setCategory={setCategory}
           onSelect={setSelected}
         />
+        <FeedbackPhone />
         <AboutFooter onChat={() => setChatOpen(true)} />
       </main>
 
