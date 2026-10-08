@@ -15,10 +15,5 @@ export default defineConfig({
       visualEditAgent: true
     }),
     react(),
-  ],
-  server: {
-    watch: {
-      ignored: ['**/public/**/*.mp4', '**/public/assets/videos/**'],
-    },
-  },
+  ]
 });
